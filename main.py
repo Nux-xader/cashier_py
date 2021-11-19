@@ -1,4 +1,4 @@
-import csv
+import csv, os
 from datetime import datetime
 
 def readCsv(label):
@@ -49,15 +49,21 @@ def compute(products, request, salestax=0.92):
 	return item, subtotal, total
 
 
+def clr():
+	os.system('cls' if os.name == 'nt' else 'clear')
+
+
 products = readCsv("Input file products.csv : ")
 request = readCsv("Input file request.csv : ")
 
-shopname = "loremipsum"
+shopname = "lorem"
 salestax = 0.06
 item, subtotal, total = compute(products, request, salestax)
 current_date_and_time = datetime.now()
 
-print("\n"+shopname)
+
+clr()
+print(shopname)
 print("\n"+renderData(products, request)+"\n")
 print("Number of Items: "+str(item))
 print("Subtotal: "+str(subtotal))
